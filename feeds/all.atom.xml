@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Mingo Chen</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2014-03-21T10:20:00+01:00</updated><entry><title>Ubuntu xbmc 使用外部播放器VLC播放本地视频</title><link href="/xbmc-vlc.html" rel="alternate"></link><updated>2014-03-21T10:20:00+01:00</updated><author><name>Mingo Chen</name></author><id>tag:,2014-03-21:xbmc-vlc.html</id><summary type="html">&lt;p&gt;在Ubuntu 下xbmc有时播放视频文件有些卡顿，但是使用VLC播放就很流畅。所以可以配置xbmc使用外部vlc来播放本地视频。&lt;/p&gt;
+&lt;h2&gt;首先在Ubuntu下安装vlc&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;vlc&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;配置xbmc使用vlc&lt;/h2&gt;
+&lt;p&gt;创建xbmc配置文件 playercorefactory.xml &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;vi&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xbmc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;userdata&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;playercorefactory&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xml&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;添加下面文件内容&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;playercorefactory&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;players&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;player&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;VLC&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;ExternalPlayer&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;video=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;true&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;filename&amp;gt;&lt;/span&gt;/usr/bin/vlc&lt;span class="nt"&gt;&amp;lt;/filename&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;args&amp;gt;&lt;/span&gt;--play-and-exit --video-on-top --fullscreen&lt;span class="nt"&gt;&amp;lt;/args&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;forceontop&amp;gt;&lt;/span&gt;false&lt;span class="nt"&gt;&amp;lt;/forceontop&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;hidexbmc&amp;gt;&lt;/span&gt;false&lt;span class="nt"&gt;&amp;lt;/hidexbmc&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;hideconsole&amp;gt;&lt;/span&gt;false&lt;span class="nt"&gt;&amp;lt;/hideconsole&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;hidecursor&amp;gt;&lt;/span&gt;false&lt;span class="nt"&gt;&amp;lt;/hidecursor&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/player&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/players&amp;gt;&lt;/span&gt;
+
+&lt;span class="nt"&gt;&amp;lt;rules&lt;/span&gt; &lt;span class="na"&gt;action=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;prepend&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;rule&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;local-videos&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;audio=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;false&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;video=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;true&amp;quot;&lt;/span&gt;
+&lt;span class="na"&gt;internetstream=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;false&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;filetypes=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;.*&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;player=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;VLC&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/rules&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/playercorefactory&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="xbmc"></category></entry></feed>

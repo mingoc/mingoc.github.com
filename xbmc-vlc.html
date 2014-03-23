@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+<head>
+    <title>Ubuntu xbmc 使用外部播放器VLC播放本地视频 - Mingo Chen</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+                            <!-- Open Graph tags -->
+                <meta property="og:site_name" content="Mingo Chen" />
+                    <meta property="og:type" content="article"/>
+            <meta property="og:title" content="Ubuntu xbmc 使用外部播放器VLC播放本地视频"/>
+            <meta property="og:url" content="/xbmc-vlc.html"/>
+            <meta property="og:description" content="Ubuntu xbmc 使用外部播放器VLC播放本地视频"/>
+            <meta property="article:published_time" content="2014-03-21" />
+                        <meta property="article:section" content="Life" />
+                                    <meta property="article:tag" content="xbmc" />
+                        
+    <!-- Bootstrap -->
+            <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css"/>
+        <link href="/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments/native.css" rel="stylesheet">
+            <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
+    
+            <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Mingo Chen ATOM Feed"/>
+        
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">
+                                Mingo Chen            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                                                                                                                                <li class="active">
+                            <a href="/category/life.html">Life</a>
+                        </li>
+                                                </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+
+<div class="container">
+    <div class="row">
+                <div class="col-sm-9">
+                    
+            <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="/xbmc-vlc.html"
+                       rel="bookmark"
+                       title="Permalink to Ubuntu xbmc 使用外部播放器VLC播放本地视频">
+                        Ubuntu xbmc 使用外部播放器VLC播放本地视频
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+                        <footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2014-03-21T10:20:00"> Fri 21 March 2014</time>
+    </span>
+                    
+            
+    
+    <span class="label label-default">Tags</span>
+	<a href="/tag/xbmc.html">xbmc</a>
+            
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>在Ubuntu 下xbmc有时播放视频文件有些卡顿，但是使用VLC播放就很流畅。所以可以配置xbmc使用外部vlc来播放本地视频。</p>
+<h2>首先在Ubuntu下安装vlc</h2>
+<div class="highlight"><pre><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">vlc</span>
+</pre></div>
+
+
+<h2>配置xbmc使用vlc</h2>
+<p>创建xbmc配置文件 playercorefactory.xml </p>
+<div class="highlight"><pre><span class="n">vi</span> <span class="o">~/</span><span class="p">.</span><span class="n">xbmc</span><span class="o">/</span><span class="n">userdata</span><span class="o">/</span><span class="n">playercorefactory</span><span class="p">.</span><span class="n">xml</span>
+</pre></div>
+
+
+<p>添加下面文件内容</p>
+<div class="highlight"><pre><span class="nt">&lt;playercorefactory&gt;</span>
+<span class="nt">&lt;players&gt;</span>
+<span class="nt">&lt;player</span> <span class="na">name=</span><span class="s">&quot;VLC&quot;</span> <span class="na">type=</span><span class="s">&quot;ExternalPlayer&quot;</span> <span class="na">video=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;filename&gt;</span>/usr/bin/vlc<span class="nt">&lt;/filename&gt;</span>
+<span class="nt">&lt;args&gt;</span>--play-and-exit --video-on-top --fullscreen<span class="nt">&lt;/args&gt;</span>
+<span class="nt">&lt;forceontop&gt;</span>false<span class="nt">&lt;/forceontop&gt;</span>
+<span class="nt">&lt;hidexbmc&gt;</span>false<span class="nt">&lt;/hidexbmc&gt;</span>
+<span class="nt">&lt;hideconsole&gt;</span>false<span class="nt">&lt;/hideconsole&gt;</span>
+<span class="nt">&lt;hidecursor&gt;</span>false<span class="nt">&lt;/hidecursor&gt;</span>
+<span class="nt">&lt;/player&gt;</span>
+<span class="nt">&lt;/players&gt;</span>
+
+<span class="nt">&lt;rules</span> <span class="na">action=</span><span class="s">&quot;prepend&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;rule</span> <span class="na">name=</span><span class="s">&quot;local-videos&quot;</span> <span class="na">audio=</span><span class="s">&quot;false&quot;</span> <span class="na">video=</span><span class="s">&quot;true&quot;</span>
+<span class="na">internetstream=</span><span class="s">&quot;false&quot;</span> <span class="na">filetypes=</span><span class="s">&quot;.*&quot;</span> <span class="na">player=</span><span class="s">&quot;VLC&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/rules&gt;</span>
+<span class="nt">&lt;/playercorefactory&gt;</span>
+</pre></div>
+            </div>
+            <!-- /.entry-content -->
+                                            </article>
+    </section>
+
+        </div>
+		        <div class="col-sm-3 well well-sm" id="sidebar">
+                
+<aside>
+    <section>
+        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+                  <ul class="list-group" id="social">
+                                        <li class="list-group-item"><a href="http://weibo.com/mingochen"><i
+                            class="fa fa-weibo-square fa-lg"></i> Weibo
+                    </a></li>
+                                        <li class="list-group-item"><a href="http://github.com/mingochen"><i
+                            class="fa fa-github-square fa-lg"></i> Github
+                    </a></li>
+                                      </ul>
+                </li>
+            
+            
+            
+                                                                                <li class="list-group-item"><a href="/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                    <ul class="list-group " id="tags">
+                                            <li class="list-group-item tag-4">
+                            <a href="/tag/xbmc.html">
+                                xbmc
+                            </a>
+                        </li>
+                                        </ul>
+                </li>    
+                                                
+        </ul>
+    </section>
+
+</aside>        </div>
+	    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+                                       <div class="col-xs-10">&copy; 2014 Mingo Chen
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="http://code.jquery.com/jquery.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="/theme/js/respond.min.js"></script>
+
+</body>
+</html>
